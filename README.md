@@ -77,9 +77,15 @@ Cada pregunta vale:
 Puntaje = 100 + (t * 5)
 ```
 
-- Donde `t` es el **tiempo de respuesta** (cuanto más rápido responda correctamente, más puntos obtiene).  
+- Donde `t` es el **tiempo de sobra** (tiempo restante respecto al límite de la pregunta).  
 - Respuesta **incorrecta o no respondida**: **0 puntos**.  
 - Los puntos se **acumulan** durante toda la ronda.
+
+Ejemplo con tiempo límite de **10 segundos**:
+
+- Si el jugador responde correctamente en **6 segundos**:
+	- Tiempo de sobra: `t = 10 - 6 = 4`.  
+	- Puntaje: `100 + (4 * 5) = 120` puntos.
 
 ### 2.6 Resultados finales
 
@@ -160,7 +166,7 @@ El sistema debe registrar para cada jugador:
 El sistema debe:
 
 - Asignar **0 puntos** a respuestas incorrectas o no respondidas.  
-- Asignar **100 puntos base + bono por tiempo (t x 5)** a respuestas correctas.
+- Asignar **100 puntos base + bono por tiempo (t x 5)** a respuestas correctas, donde `t` es el **tiempo de sobra** (tiempo límite de la pregunta menos el tiempo de respuesta del jugador).
 
 ### RF-13 Puntaje acumulado
 El sistema debe **acumular el puntaje total** de cada jugador durante la partida.
@@ -231,7 +237,7 @@ El proyecto se organiza en varios **módulos principales** (scripts/Managers) de
 
 ### 6.5 ScoreManager
 
-- Calcula el puntaje de cada jugador con la fórmula: `100 + (t * 5)` para respuestas correctas.  
+- Calcula el puntaje de cada jugador con la fórmula: `100 + (t * 5)` para respuestas correctas, donde `t` es el **tiempo de sobra** (tiempo restante antes de que termine el temporizador de la pregunta).  
 - Asigna **0 puntos** a respuestas incorrectas o no respondidas.  
 - Lleva el **acumulado de puntaje** por jugador durante la partida.  
 - Ordena a los jugadores para mostrar **ranking parcial** y **final** (top 3).
