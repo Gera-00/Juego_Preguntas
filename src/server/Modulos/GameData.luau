@@ -6,7 +6,7 @@ local GameData = {
 			Facil = {
 				{
 					Pregunta = "¿Quién descubrió América en 1492?",
-					Respuestas = {
+					Opciones = {
 						A = "Cristóbal Colón",
 						B = "Hernán Cortés",
 						C = "Américo Vespucio",
@@ -16,7 +16,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué civilización construyó las pirámides de Egipto?",
-					Respuestas = {
+					Opciones = {
 						A = "Romanos",
 						B = "Egipcios",
 						C = "Griegos",
@@ -26,7 +26,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué país surgió el Imperio Romano?",
-					Respuestas = {
+					Opciones = {
 						A = "Grecia",
 						B = "Egipto",
 						C = "Italia",
@@ -36,7 +36,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cómo se llamó la guerra entre México y Estados Unidos en 1846?",
-					Respuestas = {
+					Opciones = {
 						A = "Guerra Civil",
 						B = "Guerra México-Estados Unidos",
 						C = "Guerra de Reforma",
@@ -46,7 +46,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Quién fue el primer presidente de México?",
-					Respuestas = {
+					Opciones = {
 						A = "Benito Juárez",
 						B = "Miguel Hidalgo",
 						C = "Guadalupe Victoria",
@@ -56,7 +56,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué guerra ocurrió entre 1939 y 1945?",
-					Respuestas = {
+					Opciones = {
 						A = "Primera Guerra Mundial",
 						B = "Guerra Fría",
 						C = "Segunda Guerra Mundial",
@@ -66,7 +66,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Quién fue conocido como el Padre de la Patria en México?",
-					Respuestas = {
+					Opciones = {
 						A = "José María Morelos",
 						B = "Miguel Hidalgo",
 						C = "Vicente Guerrero",
@@ -76,7 +76,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué civilización construyó el Coliseo?",
-					Respuestas = {
+					Opciones = {
 						A = "Griega",
 						B = "Egipcia",
 						C = "Romana",
@@ -86,7 +86,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué siglo ocurrió la Independencia de México?",
-					Respuestas = {
+					Opciones = {
 						A = "Siglo XVII",
 						B = "Siglo XVIII",
 						C = "Siglo XIX",
@@ -96,7 +96,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Quién fue Napoleón Bonaparte?",
-					Respuestas = {
+					Opciones = {
 						A = "Un rey español",
 						B = "Un emperador francés",
 						C = "Un líder romano",
@@ -109,7 +109,7 @@ local GameData = {
 			Media = {
 				{
 					Pregunta = "¿En qué año inició la Independencia de México?",
-					Respuestas = {
+					Opciones = {
 						A = "1808",
 						B = "1810",
 						C = "1821",
@@ -119,7 +119,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué revolución ocurrió en Francia en 1789?",
-					Respuestas = {
+					Opciones = {
 						A = "Revolución Industrial",
 						B = "Revolución Francesa",
 						C = "Revolución Rusa",
@@ -129,7 +129,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Quién fue el líder del movimiento insurgente tras la muerte de Hidalgo?",
-					Respuestas = {
+					Opciones = {
 						A = "Vicente Guerrero",
 						B = "Agustín de Iturbide",
 						C = "José María Morelos",
@@ -139,7 +139,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué guerra terminó en 1945 con la rendición de Alemania?",
-					Respuestas = {
+					Opciones = {
 						A = "Primera Guerra Mundial",
 						B = "Guerra Fría",
 						C = "Segunda Guerra Mundial",
@@ -149,7 +149,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué civilización se desarrolló entre los ríos Tigris y Éufrates?",
-					Respuestas = {
+					Opciones = {
 						A = "Egipcia",
 						B = "Mesopotámica",
 						C = "China",
@@ -159,7 +159,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué documento marcó el inicio de la Independencia de Estados Unidos?",
-					Respuestas = {
+					Opciones = {
 						A = "Carta Magna",
 						B = "Declaración de Independencia",
 						C = "Tratado de Versalles",
@@ -169,7 +169,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué imperio cayó en 1453 con la toma de Constantinopla?",
-					Respuestas = {
+					Opciones = {
 						A = "Imperio Romano de Occidente",
 						B = "Imperio Bizantino",
 						C = "Imperio Persa",
@@ -179,7 +179,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Quién fue el primer emperador romano?",
-					Respuestas = {
+					Opciones = {
 						A = "Julio César",
 						B = "Nerón",
 						C = "Augusto",
@@ -189,7 +189,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué año se consumó la Independencia de México?",
-					Respuestas = {
+					Opciones = {
 						A = "1810",
 						B = "1815",
 						C = "1821",
@@ -199,7 +199,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué periodo histórico ocurrió después de la Edad Media?",
-					Respuestas = {
+					Opciones = {
 						A = "Antigüedad",
 						B = "Renacimiento",
 						C = "Edad Moderna",
@@ -215,7 +215,7 @@ local GameData = {
 			Facil = {
 				{
 					Pregunta = "¿Cuál es la capital de Francia?",
-					Respuestas = {
+					Opciones = {
 						A = "Madrid",
 						B = "Roma",
 						C = "París",
@@ -225,7 +225,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el continente más grande del mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "África",
 						B = "Europa",
 						C = "Asia",
@@ -235,7 +235,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cómo se llama el océano más grande del planeta?",
-					Respuestas = {
+					Opciones = {
 						A = "Atlántico",
 						B = "Índico",
 						C = "Ártico",
@@ -245,7 +245,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué continente se encuentra México?",
-					Respuestas = {
+					Opciones = {
 						A = "Europa",
 						B = "Asia",
 						C = "América",
@@ -255,7 +255,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el río más largo del mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "Amazonas",
 						B = "Nilo",
 						C = "Yangtsé",
@@ -265,7 +265,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el país más grande del mundo por territorio?",
-					Respuestas = {
+					Opciones = {
 						A = "Canadá",
 						B = "China",
 						C = "Estados Unidos",
@@ -275,7 +275,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es la capital de México?",
-					Respuestas = {
+					Opciones = {
 						A = "Guadalajara",
 						B = "Monterrey",
 						C = "Ciudad de México",
@@ -285,7 +285,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué país tiene forma de bota?",
-					Respuestas = {
+					Opciones = {
 						A = "España",
 						B = "Italia",
 						C = "Portugal",
@@ -295,7 +295,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el continente donde se encuentra el desierto del Sahara?",
-					Respuestas = {
+					Opciones = {
 						A = "Asia",
 						B = "América",
 						C = "África",
@@ -305,7 +305,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuántos continentes hay en el mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "5",
 						B = "6",
 						C = "7",
@@ -318,7 +318,7 @@ local GameData = {
 			Media = {
 				{
 					Pregunta = "¿Qué país tiene la mayor población del mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "India",
 						B = "Estados Unidos",
 						C = "China",
@@ -328,7 +328,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es la capital de Canadá?",
-					Respuestas = {
+					Opciones = {
 						A = "Toronto",
 						B = "Vancouver",
 						C = "Montreal",
@@ -338,7 +338,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué país se encuentra el Monte Everest?",
-					Respuestas = {
+					Opciones = {
 						A = "China",
 						B = "India",
 						C = "Nepal",
@@ -348,7 +348,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es la capital de Brasil?",
-					Respuestas = {
+					Opciones = {
 						A = "Río de Janeiro",
 						B = "São Paulo",
 						C = "Brasilia",
@@ -358,7 +358,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué océano baña las costas del oeste de México?",
-					Respuestas = {
+					Opciones = {
 						A = "Atlántico",
 						B = "Índico",
 						C = "Ártico",
@@ -368,7 +368,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué país limita al norte con México?",
-					Respuestas = {
+					Opciones = {
 						A = "Guatemala",
 						B = "Belice",
 						C = "Estados Unidos",
@@ -378,7 +378,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el país más pequeño del mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "Mónaco",
 						B = "San Marino",
 						C = "Vaticano",
@@ -388,7 +388,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué cordillera separa Europa de Asia?",
-					Respuestas = {
+					Opciones = {
 						A = "Andes",
 						B = "Himalaya",
 						C = "Alpes",
@@ -398,7 +398,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué país tiene más islas en el mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "Indonesia",
 						B = "Filipinas",
 						C = "Noruega",
@@ -408,7 +408,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el lago más grande de agua dulce del mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "Lago Victoria",
 						B = "Lago Superior",
 						C = "Lago Baikal",
@@ -424,7 +424,7 @@ local GameData = {
 			Facil = {
 				{
 					Pregunta = "¿Qué planeta es conocido como el planeta rojo?",
-					Respuestas = {
+					Opciones = {
 						A = "Venus",
 						B = "Marte",
 						C = "Júpiter",
@@ -434,7 +434,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuántos estados de la materia existen comúnmente?",
-					Respuestas = {
+					Opciones = {
 						A = "2",
 						B = "3",
 						C = "4",
@@ -444,7 +444,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué órgano del cuerpo humano bombea la sangre?",
-					Respuestas = {
+					Opciones = {
 						A = "Pulmón",
 						B = "Cerebro",
 						C = "Riñón",
@@ -454,7 +454,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué gas es esencial para la respiración humana?",
-					Respuestas = {
+					Opciones = {
 						A = "Hidrógeno",
 						B = "Nitrógeno",
 						C = "Oxígeno",
@@ -464,7 +464,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el animal terrestre más grande del mundo?",
-					Respuestas = {
+					Opciones = {
 						A = "Rinoceronte",
 						B = "Elefante",
 						C = "Hipopótamo",
@@ -474,7 +474,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué parte del cuerpo humano se encarga de pensar?",
-					Respuestas = {
+					Opciones = {
 						A = "Corazón",
 						B = "Pulmones",
 						C = "Cerebro",
@@ -484,7 +484,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué fuerza mantiene a los objetos pegados al suelo?",
-					Respuestas = {
+					Opciones = {
 						A = "Fricción",
 						B = "Energía",
 						C = "Gravedad",
@@ -494,7 +494,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué planeta es el más cercano al Sol?",
-					Respuestas = {
+					Opciones = {
 						A = "Mercurio",
 						B = "Venus",
 						C = "Marte",
@@ -504,7 +504,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué tipo de animal es la ballena?",
-					Respuestas = {
+					Opciones = {
 						A = "Pez",
 						B = "Anfibio",
 						C = "Reptil",
@@ -514,7 +514,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es el sentido que nos permite ver?",
-					Respuestas = {
+					Opciones = {
 						A = "Oído",
 						B = "Olfato",
 						C = "Vista",
@@ -527,7 +527,7 @@ local GameData = {
 			Media = {
 				{
 					Pregunta = "¿Cómo se llama el proceso por el cual las plantas producen su alimento?",
-					Respuestas = {
+					Opciones = {
 						A = "Respiración",
 						B = "Fotosíntesis",
 						C = "Evaporación",
@@ -537,7 +537,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué vitamina se obtiene principalmente al exponerse al sol?",
-					Respuestas = {
+					Opciones = {
 						A = "Vitamina A",
 						B = "Vitamina B",
 						C = "Vitamina C",
@@ -547,7 +547,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué parte del cuerpo humano controla el sistema nervioso?",
-					Respuestas = {
+					Opciones = {
 						A = "Corazón",
 						B = "Cerebro",
 						C = "Pulmones",
@@ -557,7 +557,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué tipo de energía produce el viento?",
-					Respuestas = {
+					Opciones = {
 						A = "Solar",
 						B = "Térmica",
 						C = "Eólica",
@@ -567,7 +567,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué ciencia estudia los seres vivos?",
-					Respuestas = {
+					Opciones = {
 						A = "Física",
 						B = "Química",
 						C = "Biología",
@@ -577,7 +577,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué órgano del cuerpo humano se encarga de filtrar la sangre?",
-					Respuestas = {
+					Opciones = {
 						A = "Pulmones",
 						B = "Hígado",
 						C = "Riñones",
@@ -587,7 +587,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué tipo de sangre es considerada donador universal?",
-					Respuestas = {
+					Opciones = {
 						A = "A",
 						B = "B",
 						C = "AB",
@@ -597,7 +597,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué planeta es el más grande del sistema solar?",
-					Respuestas = {
+					Opciones = {
 						A = "Saturno",
 						B = "Júpiter",
 						C = "Neptuno",
@@ -607,7 +607,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué gas expulsan las plantas durante la fotosíntesis?",
-					Respuestas = {
+					Opciones = {
 						A = "Oxígeno",
 						B = "Nitrógeno",
 						C = "Dióxido de carbono",
@@ -617,7 +617,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué órgano permite la respiración en los seres humanos?",
-					Respuestas = {
+					Opciones = {
 						A = "Pulmones",
 						B = "Corazón",
 						C = "Estómago",
@@ -633,7 +633,7 @@ local GameData = {
 			Facil = {
 				{
 					Pregunta = "¿Quién pintó la Mona Lisa?",
-					Respuestas = {
+					Opciones = {
 						A = "Vincent van Gogh",
 						B = "Pablo Picasso",
 						C = "Leonardo da Vinci",
@@ -643,7 +643,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué instrumento musical tiene teclas blancas y negras?",
-					Respuestas = {
+					Opciones = {
 						A = "Guitarra",
 						B = "Violín",
 						C = "Piano",
@@ -653,7 +653,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué país se originó el ballet?",
-					Respuestas = {
+					Opciones = {
 						A = "Italia",
 						B = "Francia",
 						C = "Rusia",
@@ -663,7 +663,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué arte utiliza arcilla o barro para crear figuras?",
-					Respuestas = {
+					Opciones = {
 						A = "Pintura",
 						B = "Escultura",
 						C = "Cerámica",
@@ -673,7 +673,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuál es una de las siete bellas artes?",
-					Respuestas = {
+					Opciones = {
 						A = "Programación",
 						B = "Arquitectura",
 						C = "Deporte",
@@ -683,7 +683,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué tipo de arte es el cine?",
-					Respuestas = {
+					Opciones = {
 						A = "Arte visual",
 						B = "Arte escénico",
 						C = "Séptimo arte",
@@ -693,7 +693,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué escritor creó a Don Quijote de la Mancha?",
-					Respuestas = {
+					Opciones = {
 						A = "Gabriel García Márquez",
 						B = "Miguel de Cervantes",
 						C = "Pablo Neruda",
@@ -703,7 +703,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué cultura construyó Chichén Itzá?",
-					Respuestas = {
+					Opciones = {
 						A = "Azteca",
 						B = "Olmeca",
 						C = "Maya",
@@ -713,7 +713,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué arte se expresa a través del movimiento del cuerpo?",
-					Respuestas = {
+					Opciones = {
 						A = "Pintura",
 						B = "Música",
 						C = "Danza",
@@ -723,7 +723,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué tipo de texto cuenta una historia?",
-					Respuestas = {
+					Opciones = {
 						A = "Poético",
 						B = "Narrativo",
 						C = "Expositivo",
@@ -736,7 +736,7 @@ local GameData = {
 			Media = {
 				{
 					Pregunta = "¿Qué movimiento artístico pintó la vida cotidiana y la luz?",
-					Respuestas = {
+					Opciones = {
 						A = "Cubismo",
 						B = "Surrealismo",
 						C = "Impresionismo",
@@ -746,7 +746,7 @@ local GameData = {
 				},
 				{
 					Pregunta = '¿Quién pintó el mural "El hombre controlador del universo"?',
-					Respuestas = {
+					Opciones = {
 						A = "José Clemente Orozco",
 						B = "David Alfaro Siqueiros",
 						C = "Diego Rivera",
@@ -756,7 +756,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué escritora mexicana es famosa por sus autorretratos?",
-					Respuestas = {
+					Opciones = {
 						A = "Sor Juana Inés de la Cruz",
 						B = "Elena Garro",
 						C = "Frida Kahlo",
@@ -766,7 +766,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué estilo artístico se caracteriza por figuras geométricas?",
-					Respuestas = {
+					Opciones = {
 						A = "Barroco",
 						B = "Cubismo",
 						C = "Romanticismo",
@@ -776,7 +776,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué cultura prehispánica creó el calendario solar?",
-					Respuestas = {
+					Opciones = {
 						A = "Maya",
 						B = "Azteca",
 						C = "Zapoteca",
@@ -786,7 +786,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué género literario expresa sentimientos y emociones?",
-					Respuestas = {
+					Opciones = {
 						A = "Narrativo",
 						B = "Dramático",
 						C = "Lírico",
@@ -796,7 +796,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué compositor es conocido por la Novena Sinfonía?",
-					Respuestas = {
+					Opciones = {
 						A = "Mozart",
 						B = "Bach",
 						C = "Beethoven",
@@ -806,7 +806,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué periodo artístico se inspiró en la cultura grecorromana?",
-					Respuestas = {
+					Opciones = {
 						A = "Gótico",
 						B = "Barroco",
 						C = "Renacimiento",
@@ -816,7 +816,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué manifestación cultural incluye tradiciones y costumbres?",
-					Respuestas = {
+					Opciones = {
 						A = "Arte visual",
 						B = "Patrimonio cultural",
 						C = "Arquitectura",
@@ -826,7 +826,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué forma de arte combina actuación, música y escenografía?",
-					Respuestas = {
+					Opciones = {
 						A = "Pintura",
 						B = "Ópera",
 						C = "Escultura",
@@ -842,7 +842,7 @@ local GameData = {
 			Facil = {
 				{
 					Pregunta = "¿Cuántos jugadores hay en un equipo de fútbol en la cancha?",
-					Respuestas = {
+					Opciones = {
 						A = "9",
 						B = "10",
 						C = "11",
@@ -852,7 +852,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué deporte se utiliza una raqueta?",
-					Respuestas = {
+					Opciones = {
 						A = "Fútbol",
 						B = "Tenis",
 						C = "Natación",
@@ -862,7 +862,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte se juega con un balón ovalado?",
-					Respuestas = {
+					Opciones = {
 						A = "Fútbol",
 						B = "Baloncesto",
 						C = "Rugby",
@@ -872,7 +872,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuántos puntos vale un tiro libre en baloncesto?",
-					Respuestas = {
+					Opciones = {
 						A = "1",
 						B = "2",
 						C = "3",
@@ -882,7 +882,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué país es famoso por el fútbol samba?",
-					Respuestas = {
+					Opciones = {
 						A = "Argentina",
 						B = "España",
 						C = "Brasil",
@@ -892,7 +892,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte practica Usain Bolt?",
-					Respuestas = {
+					Opciones = {
 						A = "Fútbol",
 						B = "Natación",
 						C = "Atletismo",
@@ -902,7 +902,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte se juega en una piscina?",
-					Respuestas = {
+					Opciones = {
 						A = "Waterpolo",
 						B = "Balonmano",
 						C = "Béisbol",
@@ -912,7 +912,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuántos sets se necesitan para ganar un partido de tenis profesional?",
-					Respuestas = {
+					Opciones = {
 						A = "1",
 						B = "2",
 						C = "3",
@@ -922,7 +922,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte utiliza un bate?",
-					Respuestas = {
+					Opciones = {
 						A = "Críquet",
 						B = "Béisbol",
 						C = "Golf",
@@ -932,7 +932,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte es conocido como el rey de los deportes?",
-					Respuestas = {
+					Opciones = {
 						A = "Baloncesto",
 						B = "Béisbol",
 						C = "Fútbol",
@@ -945,7 +945,7 @@ local GameData = {
 			Media = {
 				{
 					Pregunta = "¿En qué país se originaron los Juegos Olímpicos?",
-					Respuestas = {
+					Opciones = {
 						A = "Italia",
 						B = "Grecia",
 						C = "Francia",
@@ -955,7 +955,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuántos jugadores conforman un equipo de baloncesto en la cancha?",
-					Respuestas = {
+					Opciones = {
 						A = "4",
 						B = "5",
 						C = "6",
@@ -965,7 +965,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué país ha ganado más Copas del Mundo de fútbol?",
-					Respuestas = {
+					Opciones = {
 						A = "Alemania",
 						B = "Italia",
 						C = "Brasil",
@@ -975,7 +975,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte se practica en el Tour de Francia?",
-					Respuestas = {
+					Opciones = {
 						A = "Atletismo",
 						B = "Ciclismo",
 						C = "Motociclismo",
@@ -985,7 +985,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué deporte destacó Michael Jordan?",
-					Respuestas = {
+					Opciones = {
 						A = "Fútbol",
 						B = "Béisbol",
 						C = "Baloncesto",
@@ -995,7 +995,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué deporte combina carrera, ciclismo y natación?",
-					Respuestas = {
+					Opciones = {
 						A = "Pentatlón",
 						B = "Decatlón",
 						C = "Triatlón",
@@ -1005,7 +1005,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Cuántos metros mide una maratón?",
-					Respuestas = {
+					Opciones = {
 						A = "40,000",
 						B = "41,195",
 						C = "42,195",
@@ -1015,7 +1015,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué país es famoso por el sumo?",
-					Respuestas = {
+					Opciones = {
 						A = "China",
 						B = "Corea",
 						C = "Japón",
@@ -1025,7 +1025,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿En qué deporte se gana un cinturón como premio?",
-					Respuestas = {
+					Opciones = {
 						A = "Lucha libre",
 						B = "Boxeo",
 						C = "Judo",
@@ -1035,7 +1035,7 @@ local GameData = {
 				},
 				{
 					Pregunta = "¿Qué evento deportivo se celebra cada cuatro años?",
-					Respuestas = {
+					Opciones = {
 						A = "Super Bowl",
 						B = "Juegos Olímpicos",
 						C = "Copa América",
