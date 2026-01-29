@@ -11,6 +11,5 @@ local updPregunta = game:GetService("ReplicatedStorage").Remotes.Events:WaitForC
 
 -- Evento para actualizar la pregunta en la UI
 updPregunta.OnClientEvent:Connect(function(preguntaText)
-	print("Pregunta recibida:", preguntaText)
 	preguntaLbl.Text = preguntaText
 end)

@@ -1,4 +1,5 @@
 local LobbyManager = {}
+local gameManager -- referencia externa de modulo GameManager
 
 --Servicos
 local Players = game:GetService("Players")
@@ -24,7 +25,9 @@ local countdownRunning = false
 -----------------------------------------------------
 ---- INIT
 -----------------------------------------------------
-function LobbyManager.init()
+function LobbyManager.init(manager)
+	gameManager = manager
+
 	startZone.Touched:Connect(function(hit)
 		local character = hit.Parent
 		local humanoid = character:FindFirstChild("Humanoid")
@@ -40,12 +43,10 @@ function LobbyManager.init()
 		LobbyManager.registerPlayer(player)
 	end)
 
-	--Detectar cuando un jugador se va
 	Players.PlayerRemoving:Connect(function(player)
 		LobbyManager.unregisterPlayer(player)
 	end)
 
-	--Monitorear jugadores dentro de la zona
 	task.spawn(function()
 		while true do
 			for player, _ in pairs(registeredPlayers) do
@@ -53,7 +54,7 @@ function LobbyManager.init()
 					LobbyManager.unregisterPlayer(player)
 				end
 			end
-			task.wait(0.5) -- frecuensia de revisión
+			task.wait(0.5)
 		end
 	end)
 
@@ -166,21 +167,16 @@ function LobbyManager.startCountdown()
 			task.wait(1)
 		end
 		--Iniciar partida
-		LobbyManager.startGame()
+		gameManager.startGame(registeredPlayers)
 	end)
 end
 
 -----------------------------------------------------
----- START GAME
+---- RESET
 -----------------------------------------------------
-function LobbyManager.startGame()
-	print("[LobbyManager] PARTIDA INICIADA")
+function LobbyManager.reset()
+	print("[LobbyManager] Reset del lobby")
 
-	for player, _ in pairs(registeredPlayers) do
-		LobbyManager.teleportPlayer(player)
-	end
-
-	-- Reset lobby si quieres reutilizarlo
 	registeredPlayers = {}
 	playerCount = 0
 	countdownRunning = false

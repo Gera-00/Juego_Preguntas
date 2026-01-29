@@ -1,4 +1,4 @@
 local StudioAssetService = game:GetService("StudioAssetService")
-local LobbyManager = require(game:GetService("ServerScriptService").Server.Modulos.LobbyManager)
+local GameManager = require(game:GetService("ServerScriptService").Server.Modulos.GameManager)
 
-LobbyManager.init()
+GameManager.init()

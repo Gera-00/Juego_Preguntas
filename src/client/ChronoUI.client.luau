@@ -13,6 +13,5 @@ local updTiempo = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChi
 -- evVisual es un parametro que se planea usar como un efecto visual dependiendo el tiempo que quede
 -- este solamente hara que el tiempoLbl cambie de color, parpadee, etc @TODO
 updTiempo.OnClientEvent:Connect(function(tiempoRestante, evVisual)
-	print("Tiempo restante recibido:", tiempoRestante)
 	tiempoLbl.Text = tostring(tiempoRestante)
 end)

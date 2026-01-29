@@ -1,119 +1,39 @@
---- Modulo encargado del manejo de funciones principales del juego
-local GameManager = {
-	["Data"] = require(game:GetService("ServerScriptService").Server.Modulos.GameData),
-}
+local GameManager = {}
 
-GameManager.chronoPreguntas = function(tiempoPorPregunta)
-	local setTiempoJuego = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("SetTiempo")
+GameManager.State = "LOBBY"
 
-	-- Inicia un cronometro para las preguntas, este tiempo sera en segundos y PARA TODOS LOS JUAGAODRES, el cual se les
-	-- enviara mediante un evento remoto a su interfaz, cada segundo cambiara el tiempo restante
-	local evVisual = 0 -- algo a implementar mas adelante @TODO
-	for tiempoRestante = tiempoPorPregunta, 0, -1 do
-		-- Enviar el tiempo restante a todos los jugadores
-		setTiempoJuego:FireAllClients(tiempoRestante, evVisual)
-		task.wait(1)
-	end
+local LobbyManager = require(script.Parent.LobbyManager)
+local QuestionManager = require(script.Parent.QuestionManager)
+
+function GameManager.init()
+	LobbyManager.init(GameManager)
 end
 
-GameManager.ruletaTemas = function()
-	-- Obtiene la lista de temas disponibles
-	local temasDisponibles = {}
-	for nombreTema, _ in pairs(GameManager.Data.Preguntas) do
-		table.insert(temasDisponibles, nombreTema)
+function GameManager.startGame(players)
+	if GameManager.State ~= "LOBBY" then
+		return
 	end
 
-	-- Verificacion de que haya temas disponibles
-	if #temasDisponibles == 0 then
-		warn("ruletaTemas: no hay temas disponibles")
-		return nil
+	GameManager.State = "QUIZ"
+	print("[GameManager] Iniciando partida")
+
+	--TELEPORT DE JUGADORES
+	for player, _ in pairs(players) do
+		LobbyManager.teleportPlayer(player)
 	end
 
-	-- Seleccion aleatoria de un tema
-	local numRand = Random.new()
-	local indiceAleatorio = numRand:NextInteger(1, #temasDisponibles)
-	local temaSeleccionado = temasDisponibles[indiceAleatorio]
-
-	print("Tema seleccionado por la ruleta: " .. temaSeleccionado)
-	return temaSeleccionado
+	------------------------------------------------------------
+	--- YA INICIA LA PARTIDA, SOLO HAY QUE MODIFICAR EL INIT QUIZ
+	---	PARA QUE RECIBA EL ARRAY DE JUGADORES
+	------------------------------------------------------------
+	task.wait(3)
+	QuestionManager.initQuiz(20, 10, players)
 end
 
-GameManager.setPoolPreguntas = function(tema, cantidadPreguntas)
-	-- Obtiene todas las preguntas del tema (todas las dificultades), las mezcla y devuelve 'cantidadPreguntas'
-	local temaTabla = GameManager.Data.Preguntas[tema]
-	if not temaTabla then
-		warn("setPoolPreguntas: tema no encontrado -> " .. tostring(tema))
-		return {}
-	end
-
-	-- Aplanar preguntas de todas las dificultades
-	local todasPreguntas = {}
-	for _, listaDificultad in pairs(temaTabla) do
-		for _, pregunta in ipairs(listaDificultad) do
-			table.insert(todasPreguntas, pregunta)
-		end
-	end
-
-	-- Aqui se mezclaran usando Fisher–Yates con Random.new()
-	local numRand = Random.new()
-	for i = #todasPreguntas, 2, -1 do
-		local j = numRand:NextInteger(1, i)
-		todasPreguntas[i], todasPreguntas[j] = todasPreguntas[j], todasPreguntas[i]
-	end
-
-	-- Se seleccionan la cantidad solicitada (o todas si es que hay menos)
-	local seleccionadas = {}
-	local limite = math.min(cantidadPreguntas or #todasPreguntas, #todasPreguntas)
-	for i = 1, limite do
-		table.insert(seleccionadas, todasPreguntas[i])
-	end
-
-	return seleccionadas
-end
-
-GameManager.getRespuestaJugador = function(respuestaActual)
-	-- Implementacion de la logica para obtener la respuesta del jugador
-	local verResp =
-		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Functions").CheckResultado
-	verResp.OnServerInvoke = function(player, respuesta, tiempoResp)
-		local calcPunt = 100 + (tiempoResp * 5) -- @TODO esto se debe cambiar despues
-		if respuestaActual == respuesta then
-			print("Respuesta correcta del jugador: " .. player.Name)
-			return calcPunt
-		else
-			print("Respuesta incorrecta del jugador: " .. player.Name)
-			return 0
-		end
-	end
-end
-
-GameManager.initQuiz = function(tiempoJuego, numeroPreguntas)
-	print("[GameManager] Inicializado...")
-	-- En esta parte juntaremos la logica de la pool de las preguntas, respuestas del jugador, etc
-	local tema = GameManager.ruletaTemas()
-	local poolPreguntas = GameManager.setPoolPreguntas(tema, numeroPreguntas)
-	print(poolPreguntas)
-
-	-- Aqui inicializamos las preguntas, mediante una UI, la cual tendra un frame para que el jugador vea la pregunta y las opciones
-	-- la pregunta estara arriba y los botones abajo, el puntaje estara(obviamente unico para cada uno), todo esto lo gestionara mediante
-	-- opcionesUI
-	-- local SetPuntos = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("SetPuntos")
-	local setPreguntas = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("SetPregunta")
-	local setOpciones = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("SetOpciones")
-
-	for _, preguntaData in ipairs(poolPreguntas) do
-		-- Enviar la pregunta y opciones a los jugadores
-		print(preguntaData.Pregunta)
-		setPreguntas:FireAllClients(preguntaData.Pregunta)
-		setOpciones:FireAllClients(
-			preguntaData.Opciones.A,
-			preguntaData.Opciones.B,
-			preguntaData.Opciones.C,
-			preguntaData.Opciones.D
-		)
-		GameManager.getRespuestaJugador(preguntaData.Correcta)
-		GameManager.chronoPreguntas(tiempoJuego)
-	end
+function GameManager.endGame()
+	print("[GameManager] Partida terminada")
+	GameManager.State = "LOBBY"
+	LobbyManager.reset()
 end
 
 return GameManager
