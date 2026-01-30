@@ -1,6 +1,8 @@
 local LobbyManager = {}
 local gameManager -- referencia externa de modulo GameManager
 
+LobbyManager.active = true
+
 --Servicos
 local Players = game:GetService("Players")
 
@@ -48,7 +50,7 @@ function LobbyManager.init(manager)
 	end)
 
 	task.spawn(function()
-		while true do
+		while LobbyManager.active do
 			for player, _ in pairs(registeredPlayers) do
 				if not LobbyManager.isPlayerInZone(player) then
 					LobbyManager.unregisterPlayer(player)
@@ -58,7 +60,7 @@ function LobbyManager.init(manager)
 		end
 	end)
 
-	print("[LobbyManager] Inicializado correctamente")
+	print("[LobbyManager] MODULO Inicializado correctamente")
 end
 
 --funciones
@@ -167,6 +169,9 @@ function LobbyManager.startCountdown()
 			task.wait(1)
 		end
 		--Iniciar partida
+		countdownRunning = false
+		LobbyManager.active = false
+
 		gameManager.startGame(registeredPlayers)
 	end)
 end

@@ -1,3 +1,5 @@
+--@DEPRECATED
+--[[
 -- Jugador
 local player = game:GetService("Players").LocalPlayer
 -- Gui del jugador
@@ -13,3 +15,4 @@ local updPregunta = game:GetService("ReplicatedStorage").Remotes.Events:WaitForC
 updPregunta.OnClientEvent:Connect(function(preguntaText)
 	preguntaLbl.Text = preguntaText
 end)
+]]

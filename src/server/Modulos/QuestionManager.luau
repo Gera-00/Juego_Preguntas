@@ -71,28 +71,44 @@ QuestionManager.setPoolPreguntas = function(tema, cantidadPreguntas)
 	return seleccionadas
 end
 
+QuestionManager.boolPreguntas = function(players, valor)
+	local boolPreg = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("BoolPreguntas")
+	for _, player in ipairs(players) do
+		boolPreg:FireClient(player, valor)
+	end
+end
+
 QuestionManager.getRespuestaJugador = function(respuestaActual)
-	-- Implementacion de la logica para obtener la respuesta del jugador
-	local verResp =
-		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Functions").CheckResultado
+	local verResp = game:GetService("ReplicatedStorage").Remotes.Functions:WaitForChild("CheckResultado")
 	verResp.OnServerInvoke = function(player, respuesta, tiempoResp)
 		local calcPunt = 100 + (tiempoResp * 2)
 		if respuestaActual == respuesta then
-			print("Respuesta correcta del jugador: " .. player.Name)
+			-- print("Respuesta correcta del jugador: " .. player.Name)
+			QuestionManager.boolPreguntas({ player }, false)
 			return calcPunt
 		else
-			print("Respuesta incorrecta del jugador: " .. player.Name)
+			-- print("Respuesta incorrecta del jugador: " .. player.Name)
+			QuestionManager.boolPreguntas({ player }, false)
 			return 0
 		end
 	end
 end
 
+QuestionManager.showUI = function(players, mostrar)
+	local uiOpt = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("ToggleUI")
+	for _, player in ipairs(players) do
+		uiOpt:FireClient(player, mostrar)
+	end
+	-- @TODO: Implementar animaciones de entrada/salida de la UI
+end
+
 QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players)
-	print("[QuestionManager] Inicializado...")
+	print("[QuestionManager] Inicializando QUIZZ")
 
 	-- Imprimir los jugadores en el quiz
-	for player, _ in pairs(players) do
+	for _, player in ipairs(players) do
 		print("Jugador en el quiz: " .. player.Name)
+		QuestionManager.showUI({ player }, true)
 	end
 
 	-- En esta parte juntaremos la logica de la pool de las preguntas, respuestas del jugador, etc
@@ -119,6 +135,7 @@ QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players)
 		)
 		QuestionManager.getRespuestaJugador(preguntaData.Correcta)
 		QuestionManager.chronoPreguntas(tiempoJuego)
+		QuestionManager.boolPreguntas(players, true)
 	end
 end
 

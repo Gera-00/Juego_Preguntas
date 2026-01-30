@@ -1,3 +1,5 @@
+--@DEPRECATED
+--[[
 -- Jugador
 local player = game:GetService("Players").LocalPlayer
 -- Gui del jugador
@@ -15,3 +17,4 @@ local updTiempo = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChi
 updTiempo.OnClientEvent:Connect(function(tiempoRestante, evVisual)
 	tiempoLbl.Text = tostring(tiempoRestante)
 end)
+]]

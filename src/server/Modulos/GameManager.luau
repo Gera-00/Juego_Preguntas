@@ -3,6 +3,7 @@ local GameManager = {}
 GameManager.State = "LOBBY"
 
 local LobbyManager = require(script.Parent.LobbyManager)
+local ScoreManger = require(script.Parent.ScoreManager)
 local QuestionManager = require(script.Parent.QuestionManager)
 
 function GameManager.init()
@@ -14,20 +15,28 @@ function GameManager.startGame(players)
 		return
 	end
 
+	local playersForGame = {}
+
+	--Clonamos la lista de jugadores
+	for player, _ in pairs(players) do
+		table.insert(playersForGame, player)
+	end
+
 	GameManager.State = "QUIZ"
 	print("[GameManager] Iniciando partida")
 
 	--TELEPORT DE JUGADORES
-	for player, _ in pairs(players) do
+	for _, player in ipairs(playersForGame) do
 		LobbyManager.teleportPlayer(player)
 	end
 
 	------------------------------------------------------------
-	--- YA INICIA LA PARTIDA, SOLO HAY QUE MODIFICAR EL INIT QUIZ
-	---	PARA QUE RECIBA EL ARRAY DE JUGADORES
+	--- SE INICIALIZAN MODULOS DE SCORE Y QUESTION
 	------------------------------------------------------------
+	ScoreManger.init(playersForGame)
+
 	task.wait(3)
-	QuestionManager.initQuiz(20, 10, players)
+	QuestionManager.initQuiz(20, 10, playersForGame)
 end
 
 function GameManager.endGame()
