@@ -1,17 +1,26 @@
-local ScoreManager--referencia externa de ScoreManager
+local ScoreManager --referencia externa de ScoreManager
 
 --- Modulo encargado del manejo de funciones principales del juego
 local QuestionManager = {
 	Data = require(game:GetService("ServerScriptService").Server.Modulos.GameData),
+	playersCountAnswered = 0,
 }
 
-QuestionManager.chronoPreguntas = function(tiempoPorPregunta)
+QuestionManager.chronoPreguntas = function(players, tiempoPorPregunta, cooldownBtPrg)
 	local setTiempoJuego = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("SetTiempo")
 
 	-- Inicia un cronometro para las preguntas, este tiempo sera en segundos y PARA TODOS LOS JUAGAODRES, el cual se les
 	-- enviara mediante un evento remoto a su interfaz, cada segundo cambiara el tiempo restante
 	local evVisual = 0 -- algo a implementar mas adelante @TODO
 	for tiempoRestante = tiempoPorPregunta, 0, -1 do
+		-- Checar si todos los jugadores ya respondieron para terminar el cronometro antes
+		if QuestionManager.playersCountAnswered >= #players then
+			QuestionManager.playersCountAnswered = 0
+			print("[QuestionManager] Todos los jugadores respondieron, terminando pregunta...")
+			setTiempoJuego:FireAllClients(0, evVisual)
+			task.wait(cooldownBtPrg)
+			break
+		end
 		-- Enviar el tiempo restante a todos los jugadores
 		setTiempoJuego:FireAllClients(tiempoRestante, evVisual)
 		task.wait(1)
@@ -90,35 +99,46 @@ QuestionManager.getRespuestaJugador = function(respuestaActual, ScoreManagerRef)
 			if ScoreManagerRef and ScoreManagerRef.addPoints then
 				ScoreManagerRef.addPoints(player, calcPunt)
 			end
+			QuestionManager.playersCountAnswered += 1
 			return calcPunt
 		else
 			-- print("Respuesta incorrecta del jugador: " .. player.Name)
 			QuestionManager.boolPreguntas({ player }, false)
-			if ScoreManagerRef and ScoreManagerRef.addPoints then	
+			if ScoreManagerRef and ScoreManagerRef.addPoints then
 				ScoreManager.addPoints(player, 0)
 			end
+			QuestionManager.playersCountAnswered += 1
 			return 0
 		end
 	end
 end
 
-QuestionManager.showUI = function(players, mostrar)
-	local uiOpt = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("ToggleUI")
-	for _, player in ipairs(players) do
-		uiOpt:FireClient(player, mostrar)
+QuestionManager.showUI = function(players, mostrar, timeOff)
+	local uiOpt = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("QuizUI")
+	if mostrar then
+		for _, player in ipairs(players) do
+			uiOpt:FireClient(player, mostrar)
+		end
+	else
+		for _, player in ipairs(players) do
+			uiOpt:FireClient(player, mostrar)
+		end
+		QuestionManager.playersCountAnswered = 0
+		task.wait(timeOff)
+		print("[QuestionManager] Juego terminado...")
 	end
 	-- @TODO: Implementar animaciones de entrada/salida de la UI
 end
 
 QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players, ScoreManagerParam, onFinish)
 	print("[QuestionManager] Inicializando QUIZZ")
-	
+
 	ScoreManager = ScoreManagerParam
 
 	-- Imprimir los jugadores en el quiz
 	for _, player in ipairs(players) do
 		print("Jugador en el quiz: " .. player.Name)
-		QuestionManager.showUI({ player }, true)
+		QuestionManager.showUI({ player }, true, 0)
 	end
 
 	-- En esta parte juntaremos la logica de la pool de las preguntas, respuestas del jugador, etc
@@ -135,7 +155,8 @@ QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players, Score
 
 	for _, preguntaData in ipairs(poolPreguntas) do
 		-- Enviar la pregunta y opciones a los jugadores
-		print(preguntaData.Pregunta)
+		-- print(preguntaData.Pregunta)
+		-- AGREGA
 		setPreguntas:FireAllClients(preguntaData.Pregunta)
 		setOpciones:FireAllClients(
 			preguntaData.Opciones.A,
@@ -144,20 +165,14 @@ QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players, Score
 			preguntaData.Opciones.D
 		)
 		QuestionManager.getRespuestaJugador(preguntaData.Correcta, ScoreManager)
-		QuestionManager.chronoPreguntas(tiempoJuego)
+		QuestionManager.chronoPreguntas(players, tiempoJuego, 2)
 		QuestionManager.boolPreguntas(players, true)
 	end
 	--terminamos el quizz
 	if onFinish then
 		onFinish()
-		QuestionManager.reset()
+		QuestionManager.showUI(players, false, 2)
 	end
-end
-
-function QuestionManager.reset()
-	print("[QuestionManager] Juego terminado reseteamos valores")
-	--Aqui logica reseteando todo
-	
 end
 
 return QuestionManager

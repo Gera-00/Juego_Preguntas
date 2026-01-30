@@ -1,7 +1,7 @@
 local LobbyManager = {}
-local gameManager -- referencia externa de modulo GameManager
 
-LobbyManager.active = true
+LobbyManager.active = false
+local gameManager = nil -- referencia externa de modulo GameManager
 
 --Servicos
 local Players = game:GetService("Players")
@@ -9,6 +9,7 @@ local Players = game:GetService("Players")
 --Referencias del mapa
 local lobbyFolder = workspace:WaitForChild("Lobby_Escenario")
 local startZone = lobbyFolder:WaitForChild("StartGameZone")
+local lobbySpawn = lobbyFolder:WaitForChild("SpawnLocation")
 
 local partidaFolder = workspace:WaitForChild("Partida_Escenario")
 local gameSpawn = partidaFolder:WaitForChild("SpawnGameZone")
@@ -31,6 +32,10 @@ function LobbyManager.init(manager)
 	gameManager = manager
 
 	startZone.Touched:Connect(function(hit)
+		if not LobbyManager.active then
+			return
+		end
+
 		local character = hit.Parent
 		local humanoid = character:FindFirstChild("Humanoid")
 		if not humanoid then
@@ -50,10 +55,12 @@ function LobbyManager.init(manager)
 	end)
 
 	task.spawn(function()
-		while LobbyManager.active do
-			for player, _ in pairs(registeredPlayers) do
-				if not LobbyManager.isPlayerInZone(player) then
-					LobbyManager.unregisterPlayer(player)
+		while true do
+			if LobbyManager.active then
+				for player, _ in pairs(registeredPlayers) do
+					if not LobbyManager.isPlayerInZone(player) then
+						LobbyManager.unregisterPlayer(player)
+					end
 				end
 			end
 			task.wait(0.5)
@@ -132,7 +139,7 @@ function LobbyManager.unregisterPlayer(player)
 end
 
 -----------------------------------------------------
----- TELEPORT
+---- TELEPORTS
 -----------------------------------------------------
 --funcion para teletransporta jugador
 function LobbyManager.teleportPlayer(player)
@@ -145,6 +152,16 @@ function LobbyManager.teleportPlayer(player)
 
 	humanoidRootPart.CFrame = gameSpawn.CFrame + Vector3.new(0, 3, 0)
 	print("[LobbyManager] Teletransportado:", player.Name)
+end
+
+function LobbyManager.teleportToLobby(players)
+	for _, player in ipairs(players) do
+		if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+			player.Character.HumanoidRootPart.CFrame = lobbySpawn.CFrame + Vector3.new(0, 3, 0)
+
+			print("[LobbyManager] Regresado al lobby:", player.Name)
+		end
+	end
 end
 
 -----------------------------------------------------
@@ -174,6 +191,20 @@ function LobbyManager.startCountdown()
 
 		gameManager.startGame(registeredPlayers)
 	end)
+end
+
+-----------------------------------------------------
+---- ACTIVAR Y DESACTIVAR LOBBY
+-----------------------------------------------------
+function LobbyManager.enable()
+	LobbyManager.active = true
+	print("[LobbyManager] Lobby ACTIVADO")
+end
+
+function LobbyManager.disable()
+	LobbyManager.active = false
+	LobbyManager.reset()
+	print("[LobbyManager] Lobby DESACTIVADO")
 end
 
 -----------------------------------------------------

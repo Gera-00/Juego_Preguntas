@@ -16,7 +16,7 @@ local op3Bt = frameOpc:WaitForChild("Op3")
 local op4Bt = frameOpc:WaitForChild("Op4")
 
 -- Evento para mostrar/esconder la UI
-local uiOpt = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("ToggleUI")
+local uiOpt = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("QuizUI")
 -- Evento para actualizar las opciones en la UI
 local boolPreg = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("BoolPreguntas")
 -- Evento para actualizar la pregunta
@@ -26,13 +26,24 @@ local updOpciones = game:GetService("ReplicatedStorage").Remotes.Events:WaitForC
 -- Evento para actualizar el tiempo en la UI
 local updTiempo = game:GetService("ReplicatedStorage").Remotes.Events:WaitForChild("SetTiempo")
 -- Funcion para llamar al server
-local checarResp = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Functions").CheckResultado
+local checarResp = game:GetService("ReplicatedStorage").Remotes.Functions:WaitForChild("CheckResultado")
 
 local universalTimer = 0
 
--- Mostrar/Esconder UI dependiendo la peticion del server
+-- Mostrar/Limpiar/Esconder UI dependiendo lo que pida el servidor
 uiOpt.OnClientEvent:Connect(function(mostrar)
-	playerGui.Enabled = mostrar
+	if mostrar then
+		playerGui.Enabled = mostrar
+	else
+		preguntaLbl.Text = "¿?"
+		op1Bt.Text = "A"
+		op2Bt.Text = "B"
+		op3Bt.Text = "C"
+		op4Bt.Text = "D"
+		puntajeLbl.Text = "0"
+		tiempoLbl.Text = "0"
+		playerGui.Enabled = false
+	end
 end)
 
 -- Activar/Desactivar botones de opciones
@@ -69,7 +80,7 @@ op1Bt.MouseButton1Click:Connect(function()
 	local puntaje = checarResp:InvokeServer("A", universalTimer)
 	local puntajeAnterior = tonumber(string.match(puntajeLbl.Text, "%d+")) or 0
 	puntajeLbl.Text = tostring(puntajeAnterior + puntaje)
-	print(universalTimer)
+	-- print(universalTimer)
 end)
 
 -- Opcion B, llama a la funcion del server para checar la respuesta
@@ -77,7 +88,7 @@ op2Bt.MouseButton1Click:Connect(function()
 	local puntaje = checarResp:InvokeServer("B", universalTimer)
 	local puntajeAnterior = tonumber(string.match(puntajeLbl.Text, "%d+")) or 0
 	puntajeLbl.Text = tostring(puntajeAnterior + puntaje)
-	print(universalTimer)
+	-- print(universalTimer)
 end)
 
 -- Opcion C, llama a la funcion del server para checar la respuesta
@@ -85,7 +96,7 @@ op3Bt.MouseButton1Click:Connect(function()
 	local puntaje = checarResp:InvokeServer("C", universalTimer)
 	local puntajeAnterior = tonumber(string.match(puntajeLbl.Text, "%d+")) or 0
 	puntajeLbl.Text = tostring(puntajeAnterior + puntaje)
-	print(universalTimer)
+	-- print(universalTimer)
 end)
 
 -- Opcion D, llama a la funcion del server para checar la respuesta
@@ -93,5 +104,5 @@ op4Bt.MouseButton1Click:Connect(function()
 	local puntaje = checarResp:InvokeServer("D", universalTimer)
 	local puntajeAnterior = tonumber(string.match(puntajeLbl.Text, "%d+")) or 0
 	puntajeLbl.Text = tostring(puntajeAnterior + puntaje)
-	print(universalTimer)
+	-- print(universalTimer)
 end)
