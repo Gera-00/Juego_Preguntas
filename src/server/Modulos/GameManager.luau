@@ -36,7 +36,9 @@ function GameManager.startGame(players)
 	ScoreManger.init(playersForGame)
 
 	task.wait(3)
-	QuestionManager.initQuiz(20, 10, playersForGame)
+	QuestionManager.initQuiz(20, 10, playersForGame, ScoreManger, function()
+		GameManager.endGame()
+	end)
 end
 
 function GameManager.endGame()

@@ -1,3 +1,5 @@
+local ScoreManager--referencia externa de ScoreManager
+
 --- Modulo encargado del manejo de funciones principales del juego
 local QuestionManager = {
 	Data = require(game:GetService("ServerScriptService").Server.Modulos.GameData),
@@ -78,17 +80,23 @@ QuestionManager.boolPreguntas = function(players, valor)
 	end
 end
 
-QuestionManager.getRespuestaJugador = function(respuestaActual)
+QuestionManager.getRespuestaJugador = function(respuestaActual, ScoreManagerRef)
 	local verResp = game:GetService("ReplicatedStorage").Remotes.Functions:WaitForChild("CheckResultado")
 	verResp.OnServerInvoke = function(player, respuesta, tiempoResp)
 		local calcPunt = 100 + (tiempoResp * 2)
 		if respuestaActual == respuesta then
 			-- print("Respuesta correcta del jugador: " .. player.Name)
 			QuestionManager.boolPreguntas({ player }, false)
+			if ScoreManagerRef and ScoreManagerRef.addPoints then
+				ScoreManagerRef.addPoints(player, calcPunt)
+			end
 			return calcPunt
 		else
 			-- print("Respuesta incorrecta del jugador: " .. player.Name)
 			QuestionManager.boolPreguntas({ player }, false)
+			if ScoreManagerRef and ScoreManagerRef.addPoints then	
+				ScoreManager.addPoints(player, 0)
+			end
 			return 0
 		end
 	end
@@ -102,8 +110,10 @@ QuestionManager.showUI = function(players, mostrar)
 	-- @TODO: Implementar animaciones de entrada/salida de la UI
 end
 
-QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players)
+QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players, ScoreManagerParam, onFinish)
 	print("[QuestionManager] Inicializando QUIZZ")
+	
+	ScoreManager = ScoreManagerParam
 
 	-- Imprimir los jugadores en el quiz
 	for _, player in ipairs(players) do
@@ -133,10 +143,21 @@ QuestionManager.initQuiz = function(tiempoJuego, numeroPreguntas, players)
 			preguntaData.Opciones.C,
 			preguntaData.Opciones.D
 		)
-		QuestionManager.getRespuestaJugador(preguntaData.Correcta)
+		QuestionManager.getRespuestaJugador(preguntaData.Correcta, ScoreManager)
 		QuestionManager.chronoPreguntas(tiempoJuego)
 		QuestionManager.boolPreguntas(players, true)
 	end
+	--terminamos el quizz
+	if onFinish then
+		onFinish()
+		QuestionManager.reset()
+	end
+end
+
+function QuestionManager.reset()
+	print("[QuestionManager] Juego terminado reseteamos valores")
+	--Aqui logica reseteando todo
+	
 end
 
 return QuestionManager
