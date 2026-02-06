@@ -43,6 +43,22 @@ function ScoreManger.getAllScores()
 end
 
 ----------------------------------------------------
+---- GET A WINNER
+----------------------------------------------------
+function ScoreManger.getWinner()
+	local winner = nil
+	local hihgestScore = -math.huge
+
+	for player, score in pairs(scores) do
+		if score > hihgestScore then
+			hihgestScore = score
+			winner = player
+		end
+	end
+	return winner, hihgestScore
+end
+
+----------------------------------------------------
 ---- RESET
 ----------------------------------------------------
 function ScoreManger.reset()
